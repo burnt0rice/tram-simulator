@@ -1,7 +1,6 @@
 import k from "./kaboom.js";
 
 export function load() {
-    loadFont("silkscreen", "fonts/silkscreen.ttf")
     k.loadSprite("tilemap", "sprites/tilemap_packed.png", {
         sliceX: 27,
         sliceY: 18,
