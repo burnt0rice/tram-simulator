@@ -1,88 +1,44 @@
-import kaboom from "kaboom";
+import k from "./kaboom";
+import { load } from "./load";
+import { map, levelConfig } from "./level";
 
-const k = kaboom({
-  width: 1000,
-  height: 1000,
-  letterbox: true,
-});
+k.scene("game", () => {
+  load();
 
-loadSprite("tilemap", "sprites/tilemap_packed.png", {
-  sliceX: 27,
-  sliceY: 18,
-});
-
-loadSprite("npc", "sprites/tilemap_packed.png", {
-  sliceX: 27,
-  sliceY: 18,
-  anims: {
-    walk: {
-      from: 23,
-      to: 26,
-      speed: 20,
-      loop: true,
-    },
-  },
-});
-
-const map = [
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "                    ",
-  "====================",
-];
-
-const levelConfig = {
-  tileHeight: 50,
-  tileWidth: 50,
-  tiles: {
-    " ": () => [
-      sprite("tilemap", {
-        frame: 117,
-        width: 50,
-        height: 50,
-      }),
-      k.area(),
-      k.offscreen(),
-    ],
-    "=": () => [
-      sprite("tilemap", {
-        frame: 1,
-        width: 50,
-        height: 50,
-      }),
-      k.area(),
-      k.offscreen(),
-    ],
-  },
-};
-
-scene("game", () => {
   addLevel(map, levelConfig);
 
-  const npc = add([
-    sprite("npc", { anim: "walk", width: 50, height: 50 }),
-    pos(80, 40),
+  const npc1 = add([
+    sprite("npc", { anim: "walk", width: 70, height: 70 }),
+    pos(120, 370),
     area(),
     body(),
   ]);
 
-  npc.play("walk");
+  const npc2 = add([
+    sprite("npc", { anim: "run", width: 70, height: 70 }),
+    pos(500, 370),
+    area(),
+    body(),
+  ]);
+
+  const npc3 = add([
+    sprite("npc", { anim: "walk", width: 70, height: 70, flipX: true }),
+    pos(200, 640),
+    area(),
+    body(),
+  ]);
+
+  const npc4 = add([
+    sprite("npc", { anim: "run", width: 70, height: 70, flipX: true }),
+    pos(800, 640),
+    area(),
+    body(),
+  ]);
+
+  npc1.play("run");
+  npc2.play("run");
+  npc3.play("run");
+  npc4.play("run");
 });
 
 go("game");
