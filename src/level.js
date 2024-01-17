@@ -10,12 +10,12 @@ const map = [
     "                    ",
     "oooooooooooooooooooo",
     "pppppppppppppppppppp",
-    "uuuuuuuuuuuuuuuuuuuu",
-    "                    ",
     "                    ",
     "dddddddddddddddddddd",
     "pppppppppppppppppppp",
     "bbbbbbbbbbbbbbbbbbbb",
+    "                    ",
+    "                    ",
     "                    ",
     "                    ",
     "                    ",
@@ -39,15 +39,6 @@ const levelConfig = {
         "d": () => [
             k.sprite("tilemap", {
                 frame: 63,
-                width: 50,
-                height: 50,
-            }),
-            k.area(),
-            k.offscreen(),
-        ],
-        "u": () => [
-            k.sprite("tilemap", {
-                frame: 9,
                 width: 50,
                 height: 50,
             }),

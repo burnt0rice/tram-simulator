@@ -3,40 +3,37 @@ import { load } from "./load";
 import { map, levelConfig } from "./level";
 
 k.scene("game", () => {
+  console.log("game");
   load();
 
   addLevel(map, levelConfig);
 
-  const npc1 = add([
-    sprite("npc", { anim: "walk", width: 70, height: 70 }),
-    pos(120, 370),
+  const tram = add([
+    sprite("tram", { width: 750, height: 138 }),
+    pos(125, 400),
     area(),
-    body(),
   ]);
 
-  const npc2 = add([
-    sprite("npc", { anim: "run", width: 70, height: 70 }),
-    pos(500, 370),
-    area(),
-    body(),
-  ]);
+  onKeyPress("space", () => {
+    if (tram.frame === 1) {
+      tram.frame = 0;
+    }else {
+      tram.frame = 1;
+    }
+  })
 
   const npc3 = add([
     sprite("npc", { anim: "walk", width: 70, height: 70, flipX: true }),
-    pos(200, 640),
+    pos(200, 500),
     area(),
-    body(),
   ]);
 
   const npc4 = add([
     sprite("npc", { anim: "run", width: 70, height: 70, flipX: true }),
-    pos(800, 640),
+    pos(800, 500),
     area(),
-    body(),
   ]);
 
-  npc1.play("run");
-  npc2.play("run");
   npc3.play("run");
   npc4.play("run");
 });
