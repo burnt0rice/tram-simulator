@@ -15,19 +15,130 @@ k.scene("game", () => {
 
   addLevel(map, levelConfig);
 
-  const tram = add([
-    sprite("tram", { width: 750, height: 138 }),
+  const tram1 = add([
+    sprite("tram-1", { width: 138, height: 138, frame: 0 }),
     pos(325, 445),
+    area(),
+  ])
+
+  const tram2 = add([
+    sprite("tram-2", { width: 188, height: 138, frame: 0 }),
+    pos(463, 445),
     area(),
   ]);
 
-  onKeyPress("space", () => {
-    if (tram.frame === 1) {
-      tram.frame = 0;
+  const tram3 = add([
+    sprite("tram-3", { width: 188, height: 138, frame: 0 }),
+    pos(651, 445),
+    area(),
+  ]);
+
+  const tram4 = add([
+    sprite("tram-4", { width: 102, height: 138, frame: 0 }),
+    pos(839, 445),
+    area(),
+  ]);
+
+  const tram5 = add([
+    sprite("tram-5", { width: 125, height: 138, frame: 0 }),
+    pos(941, 445),
+    area(),
+  ]);
+
+  onKeyPress("1", () => {
+    if (tram1.frame === 1) {
+      tram1.frame = 0;
     }else {
-      tram.frame = 1;
+      tram1.frame = 1;
+    }
+  });
+
+  tram1.onMousePress(() => {
+    const mpos = mousePos();
+    if (mpos.x > 372 && mpos.x < 429 && mpos.y > 507 && mpos.y < 563) {
+      if (tram1.frame === 1) {
+        tram1.frame = 0;
+      }else {
+        tram1.frame = 1;
+      }
+    }
+  });
+
+  onKeyPress("2", () => {
+    if (tram2.frame === 1) {
+      tram2.frame = 0;
+    }else {
+      tram2.frame = 1;
     }
   })
+
+  tram2.onMousePress((e) => {
+    const mpos = mousePos();
+    if (mpos.x > 474 && mpos.x < 531 && mpos.y > 507 && mpos.y < 563) {
+      if (tram2.frame === 1) {
+        tram2.frame = 0;
+      }else {
+        tram2.frame = 1;
+      }
+    }
+  });
+
+  onKeyPress("3", () => {
+    if (tram3.frame === 1) {
+      tram3.frame = 0;
+    }else {
+      tram3.frame = 1;
+    }
+  })
+
+  tram3.onMousePress(() => {
+    const mpos = mousePos();
+    if (mpos.x > 663 && mpos.x < 720 && mpos.y > 507 && mpos.y < 563) {
+      if (tram3.frame === 1) {
+        tram3.frame = 0;
+      }else {
+        tram3.frame = 1;
+      }
+    }
+  });
+
+  onKeyPress("4", () => {
+    if (tram4.frame === 1) {
+      tram4.frame = 0;
+    }else {
+      tram4.frame = 1;
+    }
+  })
+
+  tram4.onMousePress(() => {
+    const mpos = mousePos();
+    if (mpos.x > 852 && mpos.x < 911 && mpos.y > 507 && mpos.y < 563) {
+      if (tram4.frame === 1) {
+        tram4.frame = 0;
+      }else {
+        tram4.frame = 1;
+      }
+    }
+  });
+
+  onKeyPress("5", () => {
+    if (tram5.frame === 1) {
+      tram5.frame = 0;
+    }else {
+      tram5.frame = 1;
+    }
+  })
+
+  tram5.onMousePress(() => {
+    const mpos = mousePos();
+    if (mpos.x > 953 && mpos.x < 1009 && mpos.y > 507 && mpos.y < 563) {
+      if (tram5.frame === 1) {
+        tram5.frame = 0;
+      }else {
+        tram5.frame = 1;
+      }
+    }
+  });
   
   function spawnNPCRight() {
     const npcRight = add([
@@ -40,11 +151,14 @@ k.scene("game", () => {
 
     
 
-    npcRight.onCollide("doorLeft", () => {
+    npcRight.onCollide("doorLeftLast", () => {
       if (npcRight.curAnim() === "walk") {
-        npcRight.play("mad");
+        npcRight.play("idle");
+        setTimeout(() => {
+          npcRight.play("mad");
+        }, 1000);
       }
-      console.log("collide - npcRight");
+      console.log("collide - npcRight <-> doorLeftLast");
     });
 
     // wait a random amount of time to spawn next tree
@@ -62,11 +176,14 @@ k.scene("game", () => {
 
     
 
-    npcLeft.onCollide("doorRight", () => {
+    npcLeft.onCollide("doorRightLast", () => {
       if (npcLeft.curAnim() === "walk") {
-        npcLeft.play("mad");
+        npcLeft.play("idle");
+        setTimeout(() => {
+          npcLeft.play("mad");
+        }, 1000);
       }
-      console.log("collide - npcLeft");
+      console.log("collide - npcLeft <-> doorRightLast");
     });
 
     // wait a random amount of time to spawn next tree
@@ -86,7 +203,8 @@ k.scene("game", () => {
     color(0, 0, 0),
     opacity(0),
     area(),
-    "doorLeft"
+    "doorLeft",
+    "doorLeftLast"
   ]);
 
   const collitionAreaDoorLeft2 = add([
@@ -167,7 +285,8 @@ k.scene("game", () => {
     color(0, 0, 0),
     opacity(0),
     area(),
-    "doorRight"
+    "doorRight",
+    "doorRightLast"
   ]);
 });
 
