@@ -27,6 +27,12 @@ export function load() {
                 speed: 10,
                 loop: true,
             },
+            mad: {
+                from: 16,
+                to: 19,
+                speed: 10,
+                loop: true,
+            },
         },
     });
 }
