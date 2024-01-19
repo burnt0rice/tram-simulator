@@ -3,6 +3,7 @@ import { load } from "./load";
 import { map, levelConfig } from "./level";
 
 import Tram from "./Tram";
+import Npc from "./Npc";
 
 document.getElementById("start").onclick = () => {
   document.getElementById("start").style.display = "none";
@@ -20,56 +21,22 @@ k.scene("game", () => {
   let tram = new Tram({ x: 325, y: 445 });
   tram.buildTram(k);
   
-  function spawnNPCRight() {
-    const npcRight = add([
-      sprite("npc", { anim: "walk", width: 70, height: 70, flipX: true }),
-      pos(1500, 550),
-      area(),
-      offscreen({ destroy: true }),
-      move(LEFT, 100)
-    ]);
-
-    
-
-    npcRight.onCollide("doorLeftLast", () => {
-      if (npcRight.curAnim() === "walk") {
-        npcRight.play("idle");
-        setTimeout(() => {
-          npcRight.play("mad");
-        }, 1000);
-      }
-      console.log("collide - npcRight <-> doorLeftLast");
-    });
-
-    // wait a random amount of time to spawn next tree
-    wait(rand(1, 5), spawnNPCRight);
+  function spawnNPCFromRight() {
+    const npcRight = new Npc({ x: 1500, y: 550 }, "left", 100, "walk");
+    npcRight.buildNpc(k);
+  
+    // wait a random amount of time to spawn next npc
+    wait(rand(1, 5), spawnNPCFromRight);
   }
 
-  function spawnNPCLeft() {
-    const npcLeft = add([
-      sprite("npc", { anim: "walk", width: 70, height: 70, flipX: false }),
-      pos(0, 550),
-      area(),
-      offscreen({ destroy: true }),
-      move(RIGHT, 100)
-    ]);
+  function spawnNPCFromLeft() {
+    const npcLeft = new Npc({ x: 0, y: 550 }, "right", 100, "walk");
+    npcLeft.buildNpc(k);
 
-    
-
-    npcLeft.onCollide("doorRightLast", () => {
-      if (npcLeft.curAnim() === "walk") {
-        npcLeft.play("idle");
-        setTimeout(() => {
-          npcLeft.play("mad");
-        }, 1000);
-      }
-      console.log("collide - npcLeft <-> doorRightLast");
-    });
-
-    // wait a random amount of time to spawn next tree
-    wait(rand(1, 5), spawnNPCLeft);
+    // wait a random amount of time to spawn next npc
+    wait(rand(1, 5), spawnNPCFromLeft);
   }
 
-  spawnNPCRight();
-  spawnNPCLeft();
+  spawnNPCFromRight();
+  spawnNPCFromLeft();
 });
