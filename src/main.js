@@ -2,6 +2,8 @@ import k from "./kaboom";
 import { load } from "./load";
 import { map, levelConfig } from "./level";
 
+import Tram from "./Tram";
+
 document.getElementById("start").onclick = () => {
   document.getElementById("start").style.display = "none";
   k.go("game");
@@ -15,130 +17,8 @@ k.scene("game", () => {
 
   addLevel(map, levelConfig);
 
-  const tram1 = add([
-    sprite("tram-1", { width: 138, height: 138, frame: 0 }),
-    pos(325, 445),
-    area(),
-  ])
-
-  const tram2 = add([
-    sprite("tram-2", { width: 188, height: 138, frame: 0 }),
-    pos(463, 445),
-    area(),
-  ]);
-
-  const tram3 = add([
-    sprite("tram-3", { width: 188, height: 138, frame: 0 }),
-    pos(651, 445),
-    area(),
-  ]);
-
-  const tram4 = add([
-    sprite("tram-4", { width: 102, height: 138, frame: 0 }),
-    pos(839, 445),
-    area(),
-  ]);
-
-  const tram5 = add([
-    sprite("tram-5", { width: 125, height: 138, frame: 0 }),
-    pos(941, 445),
-    area(),
-  ]);
-
-  onKeyPress("1", () => {
-    if (tram1.frame === 1) {
-      tram1.frame = 0;
-    }else {
-      tram1.frame = 1;
-    }
-  });
-
-  tram1.onMousePress(() => {
-    const mpos = mousePos();
-    if (mpos.x > 372 && mpos.x < 429 && mpos.y > 507 && mpos.y < 563) {
-      if (tram1.frame === 1) {
-        tram1.frame = 0;
-      }else {
-        tram1.frame = 1;
-      }
-    }
-  });
-
-  onKeyPress("2", () => {
-    if (tram2.frame === 1) {
-      tram2.frame = 0;
-    }else {
-      tram2.frame = 1;
-    }
-  })
-
-  tram2.onMousePress((e) => {
-    const mpos = mousePos();
-    if (mpos.x > 474 && mpos.x < 531 && mpos.y > 507 && mpos.y < 563) {
-      if (tram2.frame === 1) {
-        tram2.frame = 0;
-      }else {
-        tram2.frame = 1;
-      }
-    }
-  });
-
-  onKeyPress("3", () => {
-    if (tram3.frame === 1) {
-      tram3.frame = 0;
-    }else {
-      tram3.frame = 1;
-    }
-  })
-
-  tram3.onMousePress(() => {
-    const mpos = mousePos();
-    if (mpos.x > 663 && mpos.x < 720 && mpos.y > 507 && mpos.y < 563) {
-      if (tram3.frame === 1) {
-        tram3.frame = 0;
-      }else {
-        tram3.frame = 1;
-      }
-    }
-  });
-
-  onKeyPress("4", () => {
-    if (tram4.frame === 1) {
-      tram4.frame = 0;
-    }else {
-      tram4.frame = 1;
-    }
-  })
-
-  tram4.onMousePress(() => {
-    const mpos = mousePos();
-    if (mpos.x > 852 && mpos.x < 911 && mpos.y > 507 && mpos.y < 563) {
-      if (tram4.frame === 1) {
-        tram4.frame = 0;
-      }else {
-        tram4.frame = 1;
-      }
-    }
-  });
-
-  onKeyPress("5", () => {
-    if (tram5.frame === 1) {
-      tram5.frame = 0;
-    }else {
-      tram5.frame = 1;
-    }
-  })
-
-  tram5.onMousePress(() => {
-    const mpos = mousePos();
-    if (mpos.x > 953 && mpos.x < 1009 && mpos.y > 507 && mpos.y < 563) {
-      if (tram5.frame === 1) {
-        tram5.frame = 0;
-      }else {
-        tram5.frame = 1;
-      }
-    }
-  });
+  let tram = new Tram({ x: 325, y: 445 });
+  tram.buildTram(k);
   
   function spawnNPCRight() {
     const npcRight = add([
