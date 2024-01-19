@@ -1,9 +1,11 @@
 export default class Npc {
+
   constructor(pos, direction, speed, animation) {
     this.pos = pos;
     this.direction = direction;
     this.speed = speed;
     this.animation = animation;
+    this.destroyReason = "";
   }
 
   buildNpc(k) {
@@ -14,18 +16,59 @@ export default class Npc {
       pos(this.pos.x, this.pos.y),
       area(),
       offscreen({ destroy: true }),
-      move(direction, this.speed)
+      //move(direction, this.speed)
     ]);
 
-    const collisionArea = this.direction === "left" ? "doorLeftLast" : "doorRightLast";
-    npc.onCollide(collisionArea, () => {
+    let walkLoop = loop(1/this.speed, () => {
+      if (this.direction === "left") {
+        npc.pos.x -= 10;
+      }else {
+        npc.pos.x += 10;
+      }
+    });
+
+    const collisionArea = this.direction === "left" ? "doorLeft" : "doorRight";
+    npc.onCollide(collisionArea, (collisionDoor) => {
+      npc.play("idle");
+      walkLoop.paused = true;
+
+      setTimeout(() => {
+        if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+          if (k.get("tram-section-" + collisionDoor.tramSection)[0].frame === 1) {
+            this.destroyReason = "tram";
+            npc.destroy();
+            return;
+          }
+        }
+
+        npc.play("walk");
+        walkLoop.paused = false;
+      }, 1500);
+    });
+
+    const lastCollisionArea = this.direction === "left" ? "doorLeftLast" : "doorRightLast";
+    npc.onCollide(lastCollisionArea, (collisionDoor) => {
       if (npc.curAnim() === "walk") {
         npc.play("idle");
+        walkLoop.paused = true;
         setTimeout(() => {
+          if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+            if (k.get("tram-section-" + collisionDoor.tramSection)[0].frame === 1) {
+              this.destroyReason = "tram";
+              npc.destroy();
+              return;
+            }
+          }
+
           npc.play("mad");
-        }, 1000);
+          walkLoop.paused = false;
+          this.destroyReason = "offscreen";
+        }, 1500);
       }
-      console.log("collide - npc <-> " + collisionArea);
+    });
+
+    npc.onDestroy(() => {
+      console.log("destroy - npc -> ", this.destroyReason);
     });
   }
 }

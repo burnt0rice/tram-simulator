@@ -5,11 +5,11 @@ export default class Tram {
 
   buildTram(k) {
     const tramSections = [
-      { spriteId: 1, width: 138, height: 138, frame: 0, pos: { x: 0, y: 0 }, door: { x: 37, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 50, y: 125, tags: ["doorLeftLast"] }, right: { x: 103, y: 125, tags: [] }} },
-      { spriteId: 2, width: 188, height: 138, frame: 0, pos: { x: 138, y: 0 }, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 150, y: 125, tags: [] }, right: { x: 203, y: 125, tags: [] }} },
-      { spriteId: 3, width: 188, height: 138, frame: 0, pos: { x: 326, y: 0 }, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 339, y: 125, tags: [] }, right: { x: 391, y: 125, tags: [] }} },
-      { spriteId: 4, width: 102, height: 138, frame: 0, pos: { x: 514, y: 0}, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 526, y: 125, tags: [] }, right: { x: 579, y: 125, tags: [] }} },
-      { spriteId: 5, width: 125, height: 138, frame: 0, pos: { x: 616, y: 0}, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 629, y: 125, tags: [] }, right: { x: 681, y: 125, tags: ["doorRightLast"] }} },
+      { spriteId: 1, width: 138, height: 138, frame: 0, pos: { x: 0, y: 0 }, door: { x: 37, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 50, y: 125, tags: ["doorLeftLast"] }, right: { x: 103, y: 125, tags: ["doorRight"] }} },
+      { spriteId: 2, width: 188, height: 138, frame: 0, pos: { x: 138, y: 0 }, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 150, y: 125, tags: ["doorLeft"] }, right: { x: 203, y: 125, tags: ["doorRight"] }} },
+      { spriteId: 3, width: 188, height: 138, frame: 0, pos: { x: 326, y: 0 }, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 339, y: 125, tags: ["doorLeft"] }, right: { x: 391, y: 125, tags: ["doorRight"] }} },
+      { spriteId: 4, width: 102, height: 138, frame: 0, pos: { x: 514, y: 0}, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 526, y: 125, tags: ["doorLeft"] }, right: { x: 579, y: 125, tags: ["doorRight"] }} },
+      { spriteId: 5, width: 125, height: 138, frame: 0, pos: { x: 616, y: 0}, door: { x: 11, y: 62, width: 57, height: 56 }, collisionArea: { left: { x: 629, y: 125, tags: ["doorLeft"] }, right: { x: 681, y: 125, tags: ["doorRightLast"] }} },
     ];
 
     tramSections.forEach((section) => {
@@ -17,6 +17,7 @@ export default class Tram {
         sprite(`tram-${section.spriteId}`, section),
         pos(this.pos.x + section.pos.x, this.pos.y + section.pos.y),
         area(),
+        "tram-section-" + section.spriteId,
       ]);
 
       tramSection.onMousePress(() => {
@@ -47,7 +48,9 @@ export default class Tram {
         color(0, 0, 0),
         opacity(0),
         area(),
-        "doorLeft",
+        {
+          tramSection: section.spriteId,
+        },
         ...section.collisionArea.left.tags
       ]);
 
@@ -57,7 +60,9 @@ export default class Tram {
         color(0, 0, 0),
         opacity(0),
         area(),
-        "doorRight",
+        {
+          tramSection: section.spriteId,
+        },
         ...section.collisionArea.right.tags
       ]);
     });

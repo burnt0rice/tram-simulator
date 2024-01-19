@@ -22,19 +22,19 @@ k.scene("game", () => {
   tram.buildTram(k);
   
   function spawnNPCFromRight() {
-    const npcRight = new Npc({ x: 1500, y: 550 }, "left", 100, "walk");
+    const npcRight = new Npc({ x: 1500, y: 550 }, "left", 7, "walk");
     npcRight.buildNpc(k);
   
     // wait a random amount of time to spawn next npc
-    wait(rand(1, 5), spawnNPCFromRight);
+    wait(rand(20, 30), spawnNPCFromRight);
   }
 
   function spawnNPCFromLeft() {
-    const npcLeft = new Npc({ x: 0, y: 550 }, "right", 100, "walk");
+    const npcLeft = new Npc({ x: 0, y: 550 }, "right", 7, "walk");
     npcLeft.buildNpc(k);
 
     // wait a random amount of time to spawn next npc
-    wait(rand(1, 5), spawnNPCFromLeft);
+    wait(rand(10, 20), spawnNPCFromLeft);
   }
 
   spawnNPCFromRight();
