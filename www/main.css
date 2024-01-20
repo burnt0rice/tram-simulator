@@ -40,3 +40,23 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.scoreboard {
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+}
+
+.scoreboard-content {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 2px solid #333;
+    border-bottom: 0;
+    background-color: #fff;
+    padding: 10px;
+}
