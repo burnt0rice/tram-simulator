@@ -11,15 +11,26 @@
 	<div class="overlay">
 		<h1>Tram Simulator</h1>
 		<div class="overlay-content">
-			You can open each door by clicking on it or by pressing the corresponding number [1,2,3,4,5] on your keyboard.<br>
+			<br>
 		</div>
 	</div>
 	<div class="scoreboard">
 		<div class="scoreboard-content">
-			Hello
+			<div>TIME <span id="timer">0</span></div>
+			<div>SCORE <span id="score">0</span></div>
+			<div>
+				<img src="sprites/npc_mad_face.png" height="20" width="20"/>
+				<span id="npc-score">0</span>
+			</div>
 		</div>
 	</div>
-	<button id="start" onclick="startGame()">Start Game</button>
+	<div id="game-over">
+		<h2>Game Over</h2>
+		<p>Someone has entered your tram.</p>
+		<button id="restart">Restart</button>
+		<button id="go-back">Go back to menu</button>
+	</div>
+	<button id="start">Start Game</button>
 	
 	<script src="main.js"></script>
 </body>

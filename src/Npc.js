@@ -69,6 +69,18 @@ export default class Npc {
 
     npc.onDestroy(() => {
       console.log("destroy - npc -> ", this.destroyReason);
+      if (this.destroyReason === "offscreen") {
+        let npcScoreElement = document.getElementById("npc-score");
+        let npcScore = parseInt(npcScoreElement.innerHTML);
+        npcScore++;
+
+        npcScoreElement.innerHTML = npcScore;
+      }
+
+      if (this.destroyReason === "tram") {
+        k.go("game-over");
+        document.getElementById("game-over").style.display = "flex";
+      }
     });
   }
 }

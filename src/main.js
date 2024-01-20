@@ -5,6 +5,7 @@ import { map, levelConfig } from "./level";
 import Tram from "./Tram";
 import Npc from "./Npc";
 
+/* Initial menu click events */
 document.getElementById("start").onclick = () => {
   document.getElementById("start").style.display = "none";
   k.go("game");
@@ -12,6 +13,19 @@ document.getElementById("start").onclick = () => {
   document.getElementsByTagName("canvas")[0].focus();
 }
 
+document.getElementById("restart").onclick = () => {
+  document.getElementById("game-over").style.display = "none";
+  k.go("game");
+
+  document.getElementsByTagName("canvas")[0].focus();
+}
+
+document.getElementById("go-back").onclick = () => {
+  document.getElementById("game-over").style.display = "none";
+  document.getElementById("start").style.display = "block";
+}
+
+/* Scenes */
 k.scene("game", () => {
   console.log("game");
   load();
@@ -39,4 +53,8 @@ k.scene("game", () => {
 
   spawnNPCFromRight();
   spawnNPCFromLeft();
+});
+
+k.scene("game-over", () => {
+  console.log("game-over");
 });
