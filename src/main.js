@@ -5,9 +5,17 @@ import { map, levelConfig } from "./level";
 import Tram from "./Tram";
 import Npc from "./Npc";
 
+function resetScore() {
+  document.getElementById("npc-score").innerHTML = "0";
+  document.getElementById("score").innerHTML = "0";
+  document.getElementById("timer").innerHTML = "0";
+
+}
+
 /* Initial menu click events */
 document.getElementById("start").onclick = () => {
   document.getElementById("start").style.display = "none";
+  resetScore();
   k.go("game");
 
   document.getElementsByTagName("canvas")[0].focus();
@@ -15,6 +23,7 @@ document.getElementById("start").onclick = () => {
 
 document.getElementById("restart").onclick = () => {
   document.getElementById("game-over").style.display = "none";
+  resetScore();
   k.go("game");
 
   document.getElementsByTagName("canvas")[0].focus();
@@ -22,6 +31,7 @@ document.getElementById("restart").onclick = () => {
 
 document.getElementById("go-back").onclick = () => {
   document.getElementById("game-over").style.display = "none";
+  resetScore();
   document.getElementById("start").style.display = "block";
 }
 

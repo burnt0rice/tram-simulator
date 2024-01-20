@@ -37,6 +37,7 @@ will build your game and package into a .zip file, you can upload to your server
 - [ ] Add score and timer
 - [x] Add collision detection with state of door
 - [ ] Add tram station
+- [ ] Add enter indicator 
 - [ ] Create new levels
 - [ ] Create transition to the next level
 - [x] Add end screen
