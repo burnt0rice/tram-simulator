@@ -1,6 +1,7 @@
 export default class Npc {
 
   constructor(pos, direction, speed, animation) {
+    console.log("Npc created");
     this.pos = pos;
     this.direction = direction;
     this.speed = speed;
@@ -32,6 +33,11 @@ export default class Npc {
       npc.play("idle");
       walkLoop.paused = true;
 
+      //Open door
+      if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+        k.get("tram-section-" + collisionDoor.tramSection)[0].frame = 1;
+      }
+
       setTimeout(() => {
         if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
           if (k.get("tram-section-" + collisionDoor.tramSection)[0].frame === 1) {
@@ -43,7 +49,7 @@ export default class Npc {
 
         npc.play("walk");
         walkLoop.paused = false;
-      }, 1500);
+      }, 1000);
     });
 
     const lastCollisionArea = this.direction === "left" ? "doorLeftLast" : "doorRightLast";
@@ -51,6 +57,12 @@ export default class Npc {
       if (npc.curAnim() === "walk") {
         npc.play("idle");
         walkLoop.paused = true;
+
+        //Open door
+        if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+          k.get("tram-section-" + collisionDoor.tramSection)[0].frame = 1;
+        }
+
         setTimeout(() => {
           if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
             if (k.get("tram-section-" + collisionDoor.tramSection)[0].frame === 1) {
@@ -63,7 +75,7 @@ export default class Npc {
           npc.play("mad");
           walkLoop.paused = false;
           this.destroyReason = "offscreen";
-        }, 1500);
+        }, 1000);
       }
     });
 

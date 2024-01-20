@@ -1,4 +1,10 @@
-# Folder structure
+> Game still in developement
+
+# Tram-Simulator
+The objective of this game is to prevent any passengers from boarding your tram. As soon as they open the door, your task is to promptly close it. You can achieve this by either clicking on the door or utilizing the [1,2,3,4,5] keys.
+
+
+## Folder structure
 
 - `src` - source code for your kaboom project
 - `www` - distribution folder, contains your index.html, built js bundle and static assets
@@ -29,11 +35,11 @@ will build your game and package into a .zip file, you can upload to your server
 ## Todo
 - [x] Split main again into classes
 - [ ] Add score and timer
-- [ ] Add collision detection with state of door
+- [x] Add collision detection with state of door
 - [ ] Add tram station
 - [ ] Create new levels
 - [ ] Create transition to the next level
-- [ ] Add end screen
+- [x] Add end screen
 - [ ] Add sound effects
 - [ ] Add credits screen
 - [ ] Check performance

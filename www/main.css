@@ -104,7 +104,6 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   font-family: "Silkscreen", sans-serif;
-  cursor: pointer;
   z-index: 200;
   flex-direction: column;
   gap: 10px;

@@ -25,10 +25,11 @@ document.getElementById("go-back").onclick = () => {
   document.getElementById("start").style.display = "block";
 }
 
+load();
+
 /* Scenes */
 k.scene("game", () => {
   console.log("game");
-  load();
 
   addLevel(map, levelConfig);
 

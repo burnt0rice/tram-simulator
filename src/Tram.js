@@ -1,5 +1,6 @@
 export default class Tram {
   constructor(pos) {
+    console.log("Tram created");
     this.pos = pos;
   }
 
@@ -17,6 +18,7 @@ export default class Tram {
         sprite(`tram-${section.spriteId}`, section),
         pos(this.pos.x + section.pos.x, this.pos.y + section.pos.y),
         area(),
+        fixed(),
         "tram-section-" + section.spriteId,
       ]);
 
