@@ -3,9 +3,11 @@ The objective of this game is to prevent any passengers from boarding your tram.
 
 Play it on Itch.io: [https://burnt0rice.itch.io/tram-simulator](https://burnt0rice.itch.io/tram-simulator)
 
-## Assets Credits
+## Assets/Sounds Credits
 - RPG Urban Kit by Kenny - [Link](https://kenney-assets.itch.io/rpg-urban-kit)
 - Protagonist Character by Penzilla - [Link](https://penzilla.itch.io/protagonist-character)
+- Sound Effects by mixkit - [Link](https://mixkit.co)
+- Background Music is Hmm by Xythe - [Link](https://freesound.org/s/115831)
 
 ## Folder structure
 
