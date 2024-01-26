@@ -17,6 +17,8 @@ load();
 
 /* Scenes */
 k.scene("game", () => {
+  if (music) music.stop();
+  
   music = k.play("music", {
     loop: true,
     volume: 0.3,
