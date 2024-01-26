@@ -1,5 +1,3 @@
-> Game still in developement
-
 # Tram-Simulator
 The objective of this game is to prevent any passengers from boarding your tram. As soon as they open the door, your task is to promptly close it. You can achieve this by either clicking on the door or utilizing the [1,2,3,4,5] keys.
 
