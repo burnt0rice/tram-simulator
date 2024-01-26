@@ -1,50 +1,36 @@
 import k from "./kaboom";
 import { load } from "./load";
 import { map, levelConfig } from "./level";
+import ui from "./uiManager";
 
 import Tram from "./Tram";
 import Npc from "./Npc";
+import Timer from "./Timer";
 
-function resetScore() {
-  document.getElementById("npc-score").innerHTML = "0";
-  document.getElementById("score").innerHTML = "0";
-  document.getElementById("timer").innerHTML = "0";
+/* Setup game */
+let timer;
+let music;
 
-}
-
-/* Initial menu click events */
-document.getElementById("start").onclick = () => {
-  document.getElementById("start").style.display = "none";
-  resetScore();
-  k.go("game");
-
-  document.getElementsByTagName("canvas")[0].focus();
-}
-
-document.getElementById("restart").onclick = () => {
-  document.getElementById("game-over").style.display = "none";
-  resetScore();
-  k.go("game");
-
-  document.getElementsByTagName("canvas")[0].focus();
-}
-
-document.getElementById("go-back").onclick = () => {
-  document.getElementById("game-over").style.display = "none";
-  resetScore();
-  document.getElementById("start").style.display = "block";
-}
+ui.initalClickListeners();
 
 load();
 
 /* Scenes */
 k.scene("game", () => {
-  console.log("game");
+  music = k.play("music", {
+    loop: true,
+    volume: 0.3,
+  });
 
   addLevel(map, levelConfig);
 
   let tram = new Tram({ x: 325, y: 445 });
   tram.buildTram(k);
+
+  // Init timer and start it
+  timer = new Timer(90);
+  timer.updateTimeDisplay();  
+  timer.startTimer(100);
   
   function spawnNPCFromRight() {
     const npcRight = new Npc({ x: 1500, y: 550 }, "left", 7, "walk");
@@ -66,6 +52,24 @@ k.scene("game", () => {
   spawnNPCFromLeft();
 });
 
+k.onSceneLeave(() => {
+  if (music) music.stop();
+});
+
 k.scene("game-over", () => {
+  timer.stopTimer();
+  timer.resetTimer();
+
+  document.getElementById("game-over").style.display = "flex";
+
+  console.log("game-over");
+});
+
+k.scene("game-win", () => {
+  timer.stopTimer();
+  timer.resetTimer();
+
+  document.getElementById("game-win").style.display = "flex";
+
   console.log("game-over");
 });

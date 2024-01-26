@@ -35,6 +35,7 @@ export default class Npc {
 
       //Open door
       if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+        k.play("door-open", { volume: 0.5 });
         k.get("tram-section-" + collisionDoor.tramSection)[0].frame = 1;
       }
 
@@ -60,6 +61,7 @@ export default class Npc {
 
         //Open door
         if (k.get("tram-section-" + collisionDoor.tramSection).length === 1) {
+          k.play("door-open", { volume: 0.5 });
           k.get("tram-section-" + collisionDoor.tramSection)[0].frame = 1;
         }
 
@@ -86,12 +88,16 @@ export default class Npc {
         let npcScore = parseInt(npcScoreElement.innerHTML);
         npcScore++;
 
+        let scoreElement = document.getElementById("score");
+        let score = parseInt(scoreElement.innerHTML);
+        score = score + 100;
+
         npcScoreElement.innerHTML = npcScore;
+        scoreElement.innerHTML = score;
       }
 
       if (this.destroyReason === "tram") {
         k.go("game-over");
-        document.getElementById("game-over").style.display = "flex";
       }
     });
   }

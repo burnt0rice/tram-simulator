@@ -28,8 +28,10 @@ export default class Tram {
         let yStatement = mpos.y > this.pos.y + section.pos.y + section.door.y && mpos.y < this.pos.y + section.pos.y + section.door.y + section.door.height;
         if (xStatement && yStatement) {
           if (tramSection.frame === 1) {
+            k.play("door-close", { volume: 0.5 });
             tramSection.frame = 0;
           }else {
+            k.play("door-open", { volume: 0.5 });
             tramSection.frame = 1;
           }
         }

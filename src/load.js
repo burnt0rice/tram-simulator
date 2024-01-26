@@ -1,6 +1,10 @@
 import k from "./kaboom.js";
 
 export function load() {
+    k.loadSound("music", "sounds/hmm.mp3");
+    k.loadSound("door-open", "sounds/open.wav");
+    k.loadSound("door-close", "sounds/close.wav");
+
     k.loadSprite("tilemap", "sprites/tilemap_packed.png", {
         sliceX: 27,
         sliceY: 18,
