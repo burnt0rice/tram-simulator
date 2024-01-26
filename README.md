@@ -36,16 +36,3 @@ $ npm run bundle
 ```
 
 will build your game and package into a .zip file, you can upload to your server or itch.io / newground etc.
-
-## Todo
-- [x] Split main again into classes
-- [ ] Add score and timer
-- [x] Add collision detection with state of door
-- [ ] Add tram station
-- [ ] Add enter indicator 
-- [ ] Create new levels
-- [ ] Create transition to the next level
-- [x] Add end screen
-- [ ] Add sound effects
-- [ ] Add credits screen
-- [ ] Check performance
