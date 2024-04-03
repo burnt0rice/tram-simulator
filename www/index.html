@@ -1,44 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
 <head>
-	<title>tram-simulator</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+  <title>tram-simulator</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
 </head>
+
 <body>
-	<div id="start-content-container">
-		<div id="start-content">
-			<h1>Tram Simulator</h1>
-			<img src="sprites/tram_close.png" />
-			<button id="start">Start Game</button>
-			<p>Passengers are going to open the doors. Close it by clicking on it or pressing the [1,2,3,4,5] keys</p>
-		</div>
-	</div>
-	<div class="scoreboard">
-		<div class="scoreboard-content">
-			<div>TIME <span id="timer">00:00</span></div>
-			<div>SCORE <span id="score">0</span></div>
-			<div>
-				<img src="sprites/npc_mad_face.png" height="20" width="20"/>
-				<span id="npc-score">0</span>
-			</div>
-		</div>
-	</div>
-	<div id="game-over">
-		<h2>Game Over</h2>
-		<p>Someone has entered your tram.</p>
-		<button id="restart">Restart</button>
-		<button id="go-back">Go back to menu</button>
-	</div>
-	<div id="game-win">
-		<h2>You did it!</h2>
-		<p>You are ready to drive a real tram.</p>
-		<button id="restart">Restart</button>
-		<button id="go-back">Go back to menu</button>
-	</div>
-	
-	<script src="main.js"></script>
+  <div id="start-content-container">
+    <div id="start-content">
+      <h1>Tram Simulator</h1>
+      <img src="sprites/tram_close.png" />
+      <button id="start">Start Game</button>
+      <p>
+        Passengers are going to open the doors. Close it by clicking on it or
+        pressing the [1,2,3,4,5] keys
+      </p>
+    </div>
+  </div>
+  <div class="scoreboard">
+    <div class="scoreboard-content">
+      <div>TIME <span id="timer">00:00</span></div>
+      <div>SCORE <span id="score">0</span></div>
+      <div>
+        <img src="sprites/npc_mad_face.png" height="20" width="20" />
+        <span id="npc-score">0</span>
+      </div>
+    </div>
+  </div>
+  <div id="game-over">
+    <h2>Game Over</h2>
+    <p>Someone has entered your tram.</p>
+    <button id="restart">Restart</button>
+    <button id="go-back">Go back to menu</button>
+  </div>
+  <div id="game-win">
+    <h2>You did it!</h2>
+    <p>You are ready to drive a real tram.</p>
+    <button id="restart">Restart</button>
+    <button id="go-back">Go back to menu</button>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      // register service worker
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+  <script src="main.js"></script>
 </body>
+
 </html>
