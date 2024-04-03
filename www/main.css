@@ -20,7 +20,9 @@ body {
 }
 
 #start-content-container {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  padding: 20px;
   z-index: 100;
   margin-top: 10%;
 }
