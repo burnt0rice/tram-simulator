@@ -36,3 +36,9 @@ $ npm run bundle
 ```
 
 will build your game and package into a .zip file, you can upload to your server or itch.io / newground etc.
+
+
+## Stroll through ricefield
+
+If you like this project, you can explore more of my projects on my [GitHub profile](https://github.com/burnt0rice) or on my [website](https://ricefield.ch).
+
